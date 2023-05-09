@@ -8,7 +8,6 @@ public class CheckForBalancedBinaryTree {
 			return Math.max(checkHeight(n.left),checkHeight(n.right))+1;
 		}
 	}
-	
 	public static boolean checkForBalancedBinaryTree(Node n) {
 		if(n!= null) {
 			if(Math.abs(checkHeight(n.left) - checkHeight(n.right)) > 1) {
@@ -18,6 +17,14 @@ public class CheckForBalancedBinaryTree {
 			}
 		}
 		return true;
+	}
+	
+	public static boolean checkHeightBetter(Node n) {
+		if(n == null) {
+			return true;
+		}else {
+			return Math.max(checkHeight(n.left),checkHeight(n.right))+1;
+		}
 	}
 	
 	public static void main(String[] args) {
