@@ -1,44 +1,43 @@
 
 public class CheckForBalancedBinaryTree {
-
-	public static int checkHeight(Node n) {
-		if(n == null) {
-			return 0;
-		}else {
-			return Math.max(checkHeight(n.left),checkHeight(n.right))+1;
-		}
-	}
-	public static boolean checkForBalancedBinaryTree(Node n) {
+	static int output = 0;
+	public static int checkForBalancedBinaryTree(Node n) {
 		if(n!= null) {
-			if(Math.abs(checkHeight(n.left) - checkHeight(n.right)) > 1) {
-				return false;
+			if(Math.abs(checkForBalancedBinaryTree(n.left) - checkForBalancedBinaryTree(n.right)) > 1) {
+				output = -1;
+				return Math.max(checkForBalancedBinaryTree(n.left), checkForBalancedBinaryTree(n.right)) + 1;
 			}else {
-				return checkForBalancedBinaryTree(n.left) && checkForBalancedBinaryTree(n.right);
+				return Math.max(checkForBalancedBinaryTree(n.left), checkForBalancedBinaryTree(n.right)) + 1;
 			}
+		}else {
+			return 0;
 		}
-		return true;
 	}
 	
-	public static boolean checkHeightBetter(Node n) {
-		if(n == null) {
-			return true;
-		}else {
-			return Math.max(checkHeight(n.left),checkHeight(n.right))+1;
-		}
-	}
+ /*                                        75
+    
+                        100                             49
+
+           87                        8          11                    50
+
+63              100           26
+*/
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Node root = new Node(10);
-		root.left = new Node(20);
-		root.left.left = new Node(50);
-		root.left.right = new Node(30);
-		root.right = new Node(40);
-		root.right.left = new Node(40);
-		root.left.right.left = new Node(40);
-		root.left.right.right = new Node(40);
-		boolean x = checkForBalancedBinaryTree(root) ;
+		Node root = new Node(75);
+		root.left = new Node(100);
+		root.left.left = new Node(87);
+		root.left.right = new Node(8);
+		root.right = new Node(49);
+		root.right.left = new Node(11);
+		root.right.right = new Node(50);
+		root.left.right.left = new Node(26);
+		root.left.left.left = new Node(63);
+		root.left.left.right = new Node(100);
+		int x = checkForBalancedBinaryTree(root) ;
 		System.out.println(x);
+		System.out.println(output);
 	}
 
 }
